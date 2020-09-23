@@ -13,7 +13,7 @@ public class MainTest {
             PaperPass.main(paths);
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("读取/关闭IO流失败");
+            System.out.println("IO流异常");
         }
     }
 }

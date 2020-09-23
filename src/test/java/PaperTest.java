@@ -22,7 +22,7 @@ public class PaperTest {
             System.out.println("文件不存在");
         } catch (IOException e1){
             e1.printStackTrace();
-            System.out.println("数据流异常");
+            System.out.println("IO流异常");
         }
     }
 
