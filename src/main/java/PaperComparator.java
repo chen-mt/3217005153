@@ -15,11 +15,11 @@ public class PaperComparator {
      * @param copyPaper   抄袭论文
      * @return 抄袭论文的文本特征的重复数
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings(value = "unchecked")
     public int compare(Paper originPaper, Paper copyPaper) {
         Set<String> originFeatures = (HashSet<String>) originPaper.getFeatures();
-        List<String> commitFeatures = (ArrayList) copyPaper.getFeatures();
-        for (String s : commitFeatures) {
+        List<String> copyFeatures = (ArrayList) copyPaper.getFeatures();
+        for (String s : copyFeatures) {
             if (originFeatures.contains(s)) {
                 count++;
             }

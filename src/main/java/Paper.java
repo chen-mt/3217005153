@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collection;
@@ -9,21 +8,18 @@ public class Paper<T extends Collection> {
 
     private T features;
 
+    public Paper(T features){
+        this.features = features;
+    }
+
     public Paper(String path, T features) throws IOException {
         this.features = features;
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(path));
-            String line;
-            while((line = br.readLine()) != null){
-                split(line);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("文件不存在");
-        } finally {
-            br.close();
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        String line;
+        while ((line = br.readLine()) != null) {
+            split(line);
         }
+        br.close();
     }
 
     /**
@@ -51,9 +47,7 @@ public class Paper<T extends Collection> {
      */
     public Boolean isPunctuation(char c){
         // 中文标点符号的正则表达式
-        Pattern pattern = Pattern.compile("[\\u3002\\uff1f\\uff01\\uff0c\\u3001\\uff1b\\uff1a\\u201c\\u201d\\u2018" +
-                "\\u2019\\uff08\\uff09\\u300a\\u300b\\u3008\\u3009\\u3010\\u3011\\u300e\\u300f\\u300c\\u300d\\ufe4" +
-                "3\\ufe44\\u3014\\u3015\\u2026\\u2014\\uff5e\\ufe4f\\uffe5]");
+        Pattern pattern = Pattern.compile("\\pP");
         return pattern.matcher(String.valueOf(c)).find();
     }
 
